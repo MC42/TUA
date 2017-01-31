@@ -6,26 +6,30 @@
   echo $district . ' Rankings | The Ugly Alliance';
   ?></title>
   
-  <style>
-  
-  body {
-	  font-family: Arial;
-  }
-  h1,h2,h3.h4,h5,h6 {
-	  text-align:center;
-  }
-  .center {
+<style>  
+body {
+font-family: Arial;
+}
+h1,h2,h3.h4,h5,h6 {
+text-align:center;
+}
+.center {
 width:420px; 
 margin:0 auto;
-  }
-  .table {
-	  width: 100%;
-	  text-align:center;
-  }
-  </style>
- </head>
- <body>
+}
+.table {
+width: 100%;
+text-align:center;
+}
+tr:nth-child(2n) {
+background-color: #e6e6e6;
+}
+</style>
+</head>
+<body>
  <?php 
+ 
+ $startTime = microtime(true);
  include $_SERVER['DOCUMENT_ROOT'] . '/tbaapi/TBARequest.php';
  $tbaRequest = new tbaAPI\TBARequest("@StruckByTheBell", "UglyAlliance-Rankings", "1");
 
@@ -45,7 +49,7 @@ if (isset($_GET['district'])) { //THIS IS ALL A MESS WATCH WITH CAUTION
 	echo '</table></div>';
 }
 
-echo '<h6> Generated on ' . date("d-m-Y h:i:s"). ' with The Ugly Alliance.</h6>';
+echo '<h6>generated in ' . round((microtime(true) - $startTime), 2) . '  μs. </h6>';
  ?> 
  </body>
 </html>
